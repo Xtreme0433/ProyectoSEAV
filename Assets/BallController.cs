@@ -3,10 +3,10 @@ using UnityEngine;
 public class LineaApuntado : MonoBehaviour
 {
     [SerializeField] private LineRenderer lineRenderer;
-    [SerializeField] private float stopVelocity = 0.1f;
-    [SerializeField] private float powerMultiplier = 4f;
-    [SerializeField] private float maxPower = 10f;
-    private bool isAiming = false;
+    [SerializeField] private float stopVelocity = 0.1f;  // Velocidad a la que se para la bola
+    [SerializeField] private float powerMultiplier = 4f;  // Multiplicador de potencia
+    [SerializeField] private float maxPower = 10f;  // Maxima potencia de disparo
+    private bool isAiming = false;  // Indica si se tiene que mostrar la linea de apuntado
     private System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
     private float power = 0f;
     private Rigidbody rb;
@@ -51,7 +51,7 @@ public class LineaApuntado : MonoBehaviour
         if (!point.HasValue) return;
 
         DrawLine(point.Value);
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0))  // Suelta el click
         {
             stopwatch.Stop();
             power = Mathf.Clamp(float.Parse(stopwatch.ElapsedMilliseconds.ToString()) / 1000 * powerMultiplier, 0, maxPower);
@@ -73,8 +73,9 @@ public class LineaApuntado : MonoBehaviour
 
     private void DrawLine(Vector3 point)
     {
+        // TODO: no tiene en cuenta la rotacion de la bola
         Vector3[] positions = {
-            Vector3.zero,  // No preguntes, yo tampoco se por que esto funciona 
+            Vector3.zero,
             point - transform.position
         };
         lineRenderer.SetPositions(positions);
@@ -85,9 +86,7 @@ public class LineaApuntado : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out var hit))
-        {
             return hit.point;
-        }
         return null;
     }
 
