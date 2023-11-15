@@ -1,36 +1,94 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class BallController : MonoBehaviour
+public class LineaApuntado : MonoBehaviour
 {
-    public Rigidbody rb;
-    public float moveSpeed = 10f;
-    public float xInput, zInput;
+    [SerializeField] private LineRenderer lineRenderer;
+    [SerializeField] private float stopVelocity = 0.1f;
+    [SerializeField] private float powerMultiplier = 4f;
+    [SerializeField] private float maxPower = 10f;
+    private bool isAiming = false;
+    private System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
+    private float power = 0f;
+    private Rigidbody rb;
 
-    // Start is called before the first frame update
-    void Awake()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        lineRenderer.enabled = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        ProcessInputs();
-    }
-    void FixedUpdate()
-    {
-        Move();
+        if (Input.GetMouseButtonDown(0) && isAiming)  // TODO: hay veces que no lo detecta, es por temas de sincronizacion de frames
+        {
+            stopwatch.Start();
+            power = 0f;
+        }
     }
 
-    private void ProcessInputs()
+    private void FixedUpdate()
     {
-        xInput = Input.GetAxis("Horizontal") * moveSpeed;
-        zInput = Input.GetAxis("Vertical") * moveSpeed;
+        if (rb.velocity.magnitude < stopVelocity)
+        {
+            StopBall();
+        }
+        ProcessAiming();
     }
 
-    private void Move() {
-        rb.AddForce(new Vector3(xInput, 0f, zInput));
+    private void StopBall()
+    {
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        rb.rotation = Quaternion.identity; // TODO: queda feo que se resetee la rotacion pero si no hay que hacer cuentas para que la linea se dibuje bien
+        isAiming = true;
     }
+
+    private void ProcessAiming()
+    {
+        if (!isAiming) return;
+
+        Vector3? point = GetMousePoint();
+        if (!point.HasValue) return;
+
+        DrawLine(point.Value);
+        if (Input.GetMouseButtonUp(0))
+        {
+            stopwatch.Stop();
+            power = Mathf.Clamp(float.Parse(stopwatch.ElapsedMilliseconds.ToString()) / 1000 * powerMultiplier, 0, maxPower);
+            Debug.Log($"Power: {power}");
+            stopwatch.Reset();
+            ShotBall(point.Value, power);
+        }
+    }
+
+    private void ShotBall(Vector3 point, float shotPower)
+    {
+        isAiming = false;
+        lineRenderer.enabled = false;
+
+        Vector3 horizontalPoint = new(point.x, transform.position.y, point.z);
+        Vector3 direction = (horizontalPoint - transform.position).normalized;
+        rb.AddForce(shotPower * direction, ForceMode.Impulse);
+    }
+
+    private void DrawLine(Vector3 point)
+    {
+        Vector3[] positions = {
+            Vector3.zero,  // No preguntes, yo tampoco se por que esto funciona 
+            point - transform.position
+        };
+        lineRenderer.SetPositions(positions);
+        lineRenderer.enabled = true;
+    }
+
+    private Vector3? GetMousePoint()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out var hit))
+        {
+            return hit.point;
+        }
+        return null;
+    }
+
 }
