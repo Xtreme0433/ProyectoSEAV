@@ -8,9 +8,9 @@ public class BallController : MonoBehaviour
     [SerializeField]
     private float maxForce;
     [SerializeField]
-    private GameObject directionIndicator;
+    private float velocityThreshold = 0.5f;
     [SerializeField]
-    private float velocityThreshold = 0.1f;
+    private GameObject directionIndicator;
 
     private Rigidbody rb;
     private LineRenderer directionIndicatorLineRenderer;
@@ -18,6 +18,7 @@ public class BallController : MonoBehaviour
 
     private Vector3 point = Vector3.zero;
     private bool shoot = false;
+    private bool clicked = false;
 
     // change material
     void ChangeMaterialColor(Color color)
@@ -45,28 +46,33 @@ public class BallController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // if the ball is not "moving"
         if (rb.velocity.magnitude < velocityThreshold)
         {
             // on click (just the first frame)
             if (Input.GetMouseButtonDown(0))
             {
+                clicked = true;
                 directionIndicator.SetActive(true);
                 directionIndicatorLineRenderer.SetPosition(0, transform.position);
             }
 
-            // on click
+            // on hold click
             if (Input.GetMouseButton(0))
             {
                 point = GetClickPoint();
+                directionIndicatorLineRenderer.SetPosition(0, transform.position);
                 directionIndicatorLineRenderer.SetPosition(1, point);
-                Debug.Log(point);
             }
 
             // on unclick
-            if (Input.GetMouseButtonUp(0))
+            if (Input.GetMouseButtonUp(0) && clicked)
             {
                 // deactivate the indicator
                 directionIndicator.SetActive(false);
+
+                // change back clicked to false
+                clicked = false;
 
                 // give it impulse
 
@@ -77,12 +83,10 @@ public class BallController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // 1. Check angular velocity
+        // Check if the velocity magnitude is less than a threshold (we count that as not moving)
         if (rb.velocity.magnitude < velocityThreshold)
         {
             // Object is in a stable position
-            rb.velocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
             ChangeMaterialColor(Color.green);
         }
         else
@@ -90,10 +94,16 @@ public class BallController : MonoBehaviour
             ChangeMaterialColor(Color.red);
         }
 
+        // if you can shoot then apply an impulse to the ball
         if (shoot)
         {
+            const float magnitudeScale = 0.25f;
+
             Vector3 direction = transform.position - point;
-            rb.AddForce(direction, ForceMode.Impulse);
+            float magnitude = Vector3.Magnitude(direction) * magnitudeScale;
+            magnitude = Mathf.Clamp(magnitude, 0.0f, maxForce);
+
+            rb.AddForce(Vector3.Normalize(direction) * magnitude, ForceMode.Impulse);
             shoot = false;
         }
     }
@@ -106,7 +116,7 @@ public class BallController : MonoBehaviour
         // cast a ray through the ball's xy plane
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Plane m_Plane = new Plane(new Vector3(0.0f, 1.0f, 0.0f), transform.position);
-        
+
         if (m_Plane.Raycast(ray, out float enter))
         {
             point = ray.GetPoint(enter);
