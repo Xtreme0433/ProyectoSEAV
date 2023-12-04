@@ -284,6 +284,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxForce: 2
-  velocityThreshold: 0.5
+  velocityThreshold: 3
   directionIndicator: {fileID: 5195991937794799511}
   startingPosition: {x: 0, y: 0, z: 0}

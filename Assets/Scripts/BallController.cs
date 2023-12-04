@@ -89,7 +89,7 @@ public class BallController : MonoBehaviour
         if (rb.velocity.magnitude < velocityThreshold)
         {
             // Object is in a stable position
-            ChangeMaterialColor(Color.green);
+            ChangeMaterialColor(Color.white);
         }
         else
         {
@@ -112,7 +112,7 @@ public class BallController : MonoBehaviour
         // reset the ball
         if (rb.position.y < -5.0f)
         {
-            rb.position = new Vector3(7.0f, 0.5f, 3.0f);
+            rb.position = startingPosition;
             // Reset the velocity to zero
             rb.velocity = Vector3.zero;
 
