@@ -11,6 +11,8 @@ public class BallController : MonoBehaviour
     private float velocityThreshold = 0.5f;
     [SerializeField]
     private GameObject directionIndicator;
+    [SerializeField]
+    private Vector3 startingPosition;
 
     private Rigidbody rb;
     private LineRenderer directionIndicatorLineRenderer;
@@ -105,6 +107,17 @@ public class BallController : MonoBehaviour
 
             rb.AddForce(Vector3.Normalize(direction) * magnitude, ForceMode.Impulse);
             shoot = false;
+        }
+
+        // reset the ball
+        if (rb.position.y < -5.0f)
+        {
+            rb.position = new Vector3(7.0f, 0.5f, 3.0f);
+            // Reset the velocity to zero
+            rb.velocity = Vector3.zero;
+
+            // Reset the angular velocity to zero
+            rb.angularVelocity = Vector3.zero;
         }
     }
 
