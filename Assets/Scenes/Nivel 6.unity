@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -193,9 +193,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1764534742571045946, guid: 1c45d16ebbae8d74faffd0b7f667f15b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2160727983197317641, guid: 1c45d16ebbae8d74faffd0b7f667f15b, type: 3}
       propertyPath: m_Name
       value: Pieza 3 lados (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2416806105396960603, guid: 1c45d16ebbae8d74faffd0b7f667f15b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3853235770139250294, guid: 1c45d16ebbae8d74faffd0b7f667f15b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8567832990613902817, guid: 1c45d16ebbae8d74faffd0b7f667f15b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9133911483550906918, guid: 1c45d16ebbae8d74faffd0b7f667f15b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -250,6 +266,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 107223187019501894, guid: 2e0f06d0750922642ab0117f551443d9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 898768995835789960, guid: 2e0f06d0750922642ab0117f551443d9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.7
@@ -293,6 +313,14 @@ PrefabInstance:
     - target: {fileID: 1640768503196123656, guid: 2e0f06d0750922642ab0117f551443d9, type: 3}
       propertyPath: m_Name
       value: Esquina
+      objectReference: {fileID: 0}
+    - target: {fileID: 3366971209628760349, guid: 2e0f06d0750922642ab0117f551443d9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6087561452034200932, guid: 2e0f06d0750922642ab0117f551443d9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -371,6 +399,18 @@ PrefabInstance:
     - target: {fileID: 2160727983197317641, guid: 1c45d16ebbae8d74faffd0b7f667f15b, type: 3}
       propertyPath: m_Name
       value: Pieza 3 lados
+      objectReference: {fileID: 0}
+    - target: {fileID: 2416806105396960603, guid: 1c45d16ebbae8d74faffd0b7f667f15b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3853235770139250294, guid: 1c45d16ebbae8d74faffd0b7f667f15b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8567832990613902817, guid: 1c45d16ebbae8d74faffd0b7f667f15b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9133911483550906918, guid: 1c45d16ebbae8d74faffd0b7f667f15b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -600,7 +640,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 34ab3071e0e4ffb4faad9aeeacb9ac69, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.35
+      value: -0.36
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 34ab3071e0e4ffb4faad9aeeacb9ac69, type: 3}
       propertyPath: m_LocalPosition.z
