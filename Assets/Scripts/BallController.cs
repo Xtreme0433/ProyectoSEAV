@@ -1,7 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BallController : MonoBehaviour
 {
@@ -19,8 +17,12 @@ public class BallController : MonoBehaviour
     private MeshRenderer meshRenderer;
 
     private Vector3 point = Vector3.zero;
+    private Vector3 lastPosition = Vector3.zero;
     private bool shoot = false;
     private bool clicked = false;
+    [SerializeField]
+    private Text golpesText;
+    private int cntGolpes = 0;
 
     // change material
     void ChangeMaterialColor(Color color)
@@ -43,6 +45,14 @@ public class BallController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         directionIndicatorLineRenderer = directionIndicator.GetComponent<LineRenderer>();
         meshRenderer = GetComponent<MeshRenderer>();
+
+        UpdateText();
+    }
+
+    // Update the text
+    void UpdateText()
+    {
+        golpesText.text = "Golpes: " + cntGolpes;
     }
 
     // Update is called once per frame
@@ -77,7 +87,7 @@ public class BallController : MonoBehaviour
                 clicked = false;
 
                 // give it impulse
-
+                lastPosition = rb.position;
                 shoot = true;
             }
         }
@@ -90,6 +100,7 @@ public class BallController : MonoBehaviour
         {
             // Object is in a stable position
             ChangeMaterialColor(Color.white);
+            rb.velocity = Vector3.zero;
         }
         else
         {
@@ -99,26 +110,42 @@ public class BallController : MonoBehaviour
         // if you can shoot then apply an impulse to the ball
         if (shoot)
         {
-            const float magnitudeScale = 0.25f;
-
-            Vector3 direction = transform.position - point;
-            float magnitude = Vector3.Magnitude(direction) * magnitudeScale;
-            magnitude = Mathf.Clamp(magnitude, 0.0f, maxForce);
-
-            rb.AddForce(Vector3.Normalize(direction) * magnitude, ForceMode.Impulse);
-            shoot = false;
+            Shoot();
         }
 
         // reset the ball
         if (rb.position.y < -5.0f)
         {
-            rb.position = startingPosition;
-            // Reset the velocity to zero
-            rb.velocity = Vector3.zero;
-
-            // Reset the angular velocity to zero
-            rb.angularVelocity = Vector3.zero;
+            ResetBall();
         }
+    }
+
+    // Apply an impulse to the ball
+    private void Shoot()
+    {
+        const float magnitudeScale = 0.25f;
+
+        Vector3 direction = transform.position - point;
+        float magnitude = Vector3.Magnitude(direction) * magnitudeScale;
+        magnitude = Mathf.Clamp(magnitude, 0.0f, maxForce);
+
+        rb.AddForce(Vector3.Normalize(direction) * magnitude, ForceMode.Impulse);
+        shoot = false;
+
+        cntGolpes++;
+        UpdateText();
+    }
+
+    // Reset the ball to the last position
+    private void ResetBall()
+    {
+        rb.position = lastPosition;
+        // Reset the velocity to zero
+        rb.velocity = Vector3.zero;
+
+        // Reset the angular velocity to zero
+        rb.angularVelocity = Vector3.zero;
+        UpdateText();
     }
 
     // Get the point of intersection of a ray casted from the camera through the ball's xy plane
