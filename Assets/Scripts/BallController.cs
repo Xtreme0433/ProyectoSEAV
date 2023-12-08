@@ -11,6 +11,8 @@ public class BallController : MonoBehaviour
     private GameObject directionIndicator;
     [SerializeField]
     private Vector3 startingPosition;
+    [SerializeField]
+    private float resetHeight = -5.0f;
 
     private Rigidbody rb;
     private LineRenderer directionIndicatorLineRenderer;
@@ -100,7 +102,6 @@ public class BallController : MonoBehaviour
         {
             // Object is in a stable position
             ChangeMaterialColor(Color.white);
-            rb.velocity = Vector3.zero;
         }
         else
         {
@@ -114,7 +115,7 @@ public class BallController : MonoBehaviour
         }
 
         // reset the ball
-        if (rb.position.y < -5.0f)
+        if (rb.position.y < resetHeight)
         {
             ResetBall();
         }
@@ -140,12 +141,9 @@ public class BallController : MonoBehaviour
     private void ResetBall()
     {
         rb.position = lastPosition;
-        // Reset the velocity to zero
-        rb.velocity = Vector3.zero;
 
-        // Reset the angular velocity to zero
+        rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
-        UpdateText();
     }
 
     // Get the point of intersection of a ray casted from the camera through the ball's xy plane
