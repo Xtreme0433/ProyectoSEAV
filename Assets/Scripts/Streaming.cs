@@ -27,7 +27,7 @@ public class Streaming : MonoBehaviour {
     
     public String url;
     public RenderTexture renderTexture;
-    public Texture2D texture;
+    private Texture2D texture;
     
     private bool streaming = false;
     private int frameCounter;
@@ -46,18 +46,23 @@ public class Streaming : MonoBehaviour {
         
         streamer = get_streamer();
         streamer_setup(streamer);
+
+        frameCounter = 0;
+        streaming = true;
+        int result = streamer_start(streamer, url, renderTexture.width, renderTexture.height, 60, 2000000);
+        Debug.Log("Start " + result);
     }
 
     // Update is called once per frame
     void Update ()
     {
-        if (Input.GetKeyDown("1") || SeCargaUnaNuevaEscena())
-        {
-            frameCounter = 0;
-            streaming = true;
-            int result = streamer_start(streamer, url, renderTexture.width, renderTexture.height, 60, 2000000);
-            Debug.Log("Start " + result);
-        }
+        //if (Input.GetKeyDown("1") || SeCargaUnaNuevaEscena())
+        //{
+        //    frameCounter = 0;
+        //    streaming = true;
+        //    int result = streamer_start(streamer, url, renderTexture.width, renderTexture.height, 60, 2000000);
+        //    Debug.Log("Start " + result);
+        //}
 
         if (Input.GetKeyDown("2"))
         {
