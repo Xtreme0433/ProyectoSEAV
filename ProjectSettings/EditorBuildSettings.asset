@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: "Assets/Scenes/Men\xFA.unity"
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
     path: Assets/Scenes/Nivel 1.unity
@@ -30,6 +30,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Nivel 7.unity
     guid: a5aaddec46f394b4eaec9dd56a11c47e
   - enabled: 1
-    path: Assets/Scenes/SampleScene 1.unity
-    guid: 23b15b64cee97694b851fb51af6f9d79
+    path: "Assets/Scenes/Men\xFA 2.unity"
+    guid: ca66fe61b3dce1a468a8ec7822d3722f
   m_configObjects: {}
