@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Runtime.InteropServices;
+using UnityEngine.SceneManagement;
 
 
 public class Streaming : MonoBehaviour {
@@ -40,6 +41,7 @@ public class Streaming : MonoBehaviour {
     
     void Start ()
     {
+
         texture = new Texture2D(renderTexture.width, renderTexture.height);
         
         streamer = get_streamer();
@@ -49,7 +51,7 @@ public class Streaming : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
-        if (Input.GetKeyDown("1"))
+        if (Input.GetKeyDown("1") || SeCargaUnaNuevaEscena())
         {
             frameCounter = 0;
             streaming = true;
@@ -101,5 +103,25 @@ public class Streaming : MonoBehaviour {
     {
         if (streaming) streamer_stop(streamer);
         streamer_release(streamer);
+    }
+    bool SeCargaUnaNuevaEscena()
+    {
+        // Aquí puedes agregar la lógica para determinar si se está cargando una nueva escena
+        // Puedes utilizar SceneManager para esto
+        // Por ejemplo, puedes comparar el nombre de la escena actual con el nombre de la escena anterior
+        string escenaActual = SceneManager.GetActiveScene().name;
+        // Almacena el nombre de la escena actual para comparar luego
+        string escenaAnterior = PlayerPrefs.GetString("EscenaAnterior", "");
+
+        // Si el nombre de la escena actual es diferente al nombre de la escena anterior, se está cargando una nueva escena
+        if (escenaActual != escenaAnterior)
+        {
+            // Actualiza el nombre de la escena anterior
+            PlayerPrefs.SetString("EscenaAnterior", escenaActual);
+            PlayerPrefs.Save();
+            return true;
+        }
+
+        return false;
     }
 }
