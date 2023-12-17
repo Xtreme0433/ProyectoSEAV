@@ -1333,6 +1333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicSource: {fileID: 258135784}
+  sceneToReloadOn: "Men\xFA 2"
 --- !u!4 &258135783
 Transform:
   m_ObjectHideFlags: 0
@@ -3769,8 +3770,8 @@ RectTransform:
   m_Children:
   - {fileID: 1824413774}
   - {fileID: 1114370262}
-  - {fileID: 655791329}
   - {fileID: 121438918}
+  - {fileID: 655791329}
   - {fileID: 986249932}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 205.254}
@@ -4568,7 +4569,7 @@ RectTransform:
   m_GameObject: {fileID: 741944427}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2302052, y: 0.8648308, z: 1}
+  m_LocalScale: {x: 1.2302052, y: 1.0765413, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1499453255}
@@ -4576,7 +4577,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 24.013, y: 189}
+  m_AnchoredPosition: {x: 24.013, y: 189.13995}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &741944429
@@ -6751,7 +6752,7 @@ RectTransform:
   m_GameObject: {fileID: 1328497494}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2302052, y: 0.8648308, z: 1}
+  m_LocalScale: {x: 1.2302052, y: 1.0159167, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1414500089}
@@ -7652,7 +7653,7 @@ RectTransform:
   m_GameObject: {fileID: 1441280553}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2302052, y: 0.8648308, z: 1}
+  m_LocalScale: {x: 1.2302052, y: 0.9872044, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1628218213}
@@ -7660,7 +7661,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 24.013, y: 304}
+  m_AnchoredPosition: {x: 24.013, y: 304.08}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1441280555
@@ -8527,7 +8528,7 @@ RectTransform:
   m_GameObject: {fileID: 1607971239}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2302052, y: 0.8648308, z: 1}
+  m_LocalScale: {x: 1.2302052, y: 1.0519803, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1199481203}
@@ -8535,7 +8536,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 24.013, y: 362}
+  m_AnchoredPosition: {x: 24.013, y: 362.12}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1607971241
@@ -8793,6 +8794,7 @@ GameObject:
   - component: {fileID: 1615783917}
   - component: {fileID: 1615783919}
   - component: {fileID: 1615783920}
+  - component: {fileID: 1615783921}
   m_Layer: 0
   m_Name: ControladorDeOpciones
   m_TagString: Untagged
@@ -8898,6 +8900,19 @@ MonoBehaviour:
   cancion1: {fileID: 8300000, guid: 18d8b13a726fcbe4699754da57e87719, type: 3}
   cancion2: {fileID: 8300000, guid: 49f8c4dfc89d2544bb5a41fe7af4e38c, type: 3}
   cancion3: {fileID: 8300000, guid: 4c281b34337c84b41b1e41f3e9de5ddc, type: 3}
+--- !u!114 &1615783921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1615783912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2dc26aa65b739d4bb7ae8a6653a1920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  miPanel: {fileID: 986249931}
 --- !u!1 &1620082717
 GameObject:
   m_ObjectHideFlags: 0
@@ -9644,7 +9659,7 @@ RectTransform:
   m_GameObject: {fileID: 1762666509}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.7114584, y: 1.1875938, z: 1}
+  m_LocalScale: {x: 2.7114584, y: 1.2247654, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1114370262}
