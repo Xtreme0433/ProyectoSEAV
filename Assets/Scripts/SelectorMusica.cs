@@ -11,8 +11,8 @@ public class SelectorMusica : MonoBehaviour
     public AudioClip cancion1;
     public AudioClip cancion2;
     public AudioClip cancion3;
-
-    void Start()
+         
+        void Start()
     {
         // Configurar la primera canción como la canción predeterminada
         reproductorDeAudio.clip = cancion1;
